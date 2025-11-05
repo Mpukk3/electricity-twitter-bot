@@ -14,9 +14,13 @@ def get_electricity_prices():
     url = "https://dashboard.elering.ee/api/nps/price"
     
     try:
+        now = datetime.now()
+        start_time = now.replace(hour=0, minute=0, second=0, microsecond=0)
+        end_time = start_time + timedelta(days=1)
+        
         response = requests.get(url, params={
-            "start": datetime.now().strftime("%Y-%m-%d"), 
-            "end": (datetime.now() + timedelta(days=1)).strftime("%Y-%m-%d")
+            "start": start_time.strftime("%Y-%m-%dT%H:%M:%S.000Z"), 
+            "end": end_time.strftime("%Y-%m-%dT%H:%M:%S.000Z")
         })
         response.raise_for_status()
         data = response.json()
