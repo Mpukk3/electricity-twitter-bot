@@ -1,4 +1,4 @@
-  name: Run Electricity Bot
+name: Run Electricity Bot
 
 on:
   schedule:
